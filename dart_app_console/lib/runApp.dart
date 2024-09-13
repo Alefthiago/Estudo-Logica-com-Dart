@@ -42,7 +42,6 @@ void runApp() async {
     }
 
     userController.createUser(dataUser['name']!, dataUser['document']!, dataUser['password']!);
-    
   } catch (event) {
     print('Error ${event}');
   }

@@ -6,5 +6,10 @@ class Userservice {
 
   Future<void> createUser(String name, String document, String password) async {
     
+    if(name.trim().isEmpty || document.trim().isEmpty || password.trim().isEmpty) {
+      throw Exception('Todos os campos são obrigatórios!');
+    } 
+
+    
   }
 }
