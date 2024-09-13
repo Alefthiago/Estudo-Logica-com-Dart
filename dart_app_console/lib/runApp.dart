@@ -1,14 +1,15 @@
-import 'package:dart_app_console/src/services/dart_app_console.dart'
-    as dart_app_console;
-import 'package:dart_app_console/src/services/class/User.dart';
 import 'dart:io';
 import 'dart:convert';
+
+import 'package:dart_app_console/src/controllers/UserController.dart';
 
 Future<String> readLineFromStream(Stream<String> stream) async {
   return await stream.firstWhere((line) => line.isNotEmpty);
 }
 
 void runApp() async {
+  var userController = UserController();
+
   Map<String, String> dataUser = {
     'name': '',
     'document': '',
@@ -40,10 +41,8 @@ void runApp() async {
       dataUser['password'] = stdin.readLineSync() ?? '';
     }
 
-    User user =
-        User(dataUser['name']!, dataUser['document']!, dataUser['password']!);
-
-    print(user);
+    userController.createUser(dataUser['name']!, dataUser['document']!, dataUser['password']!);
+    
   } catch (event) {
     print('Error ${event}');
   }
